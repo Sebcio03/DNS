@@ -24,9 +24,9 @@ jobs:
         run: >-
           black .;
           isort;
-          flake8 backend/tests/* backend/app/*
+          flake8 backend/app/*
       - name: Check security issues with bandit
-        run: bandit -r -x /backend/tests .
+        run: bandit -r -x /backend/app/tests .
   tests:
     needs: linters
     runs-on: ubuntu-latest
