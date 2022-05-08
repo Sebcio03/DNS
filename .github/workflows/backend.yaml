@@ -24,7 +24,7 @@ jobs:
         run: >-
           black .;
           isort;
-          flake8 backend/app/*
+          flake8 backend/*.py
       - name: Check security issues with bandit
         run: bandit -r -x /backend/app/tests .
   tests:
