@@ -1,7 +1,7 @@
 {
     "family": "dns-backend",
-    "ExecutionRoleArn": "arn:aws:iam::060274181246:role/dns-ecs", 
-    "TaskRoleArn": "arn:aws:iam::060274181246:role/dns-ecs",
+    "executionRoleArn": "arn:aws:iam::060274181246:role/dns-ecs", 
+    "taskRoleArn": "arn:aws:iam::060274181246:role/dns-ecs",
     "containerDefinitions": [
         {
             "name": "dns-backend",
