@@ -321,8 +321,8 @@ socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
 
 [metadata]
 lock-version = "1.1"
-python-versions = ">=3.10"
-content-hash = "6d996237c10a47ce7c2fe47f6fec797c0d49cb403c53486b92f4cd2aa2e64267"
+python-versions = ">=3.10.0"
+content-hash = "a85059faf99295a264c16181e4151cf6821acea05c149dd8d2f65d26b9809354"
 
 [metadata.files]
 anyio = [
