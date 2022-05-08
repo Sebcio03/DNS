@@ -1,6 +1,6 @@
 FROM tiangolo/uvicorn-gunicorn-fastapi:python3.9-slim
 
-LABEL maintainer="Sebastian Ozimkowski sebastianozimkowski@outlook.com>"
+LABEL maintainer="Sebastian Ozimkowski <sebastianozimkowski@outlook.com>"
 
 RUN apt-get update -y && apt-get upgrade -y 
 RUN apt-get install curl -y

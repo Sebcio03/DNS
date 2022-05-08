@@ -13,5 +13,5 @@ def client() -> Generator:
 
 @pytest.fixture()
 async def async_client() -> AsyncGenerator:
-    async with AsyncClient(app=app, base_url="http://localhost/") as ac:
+    async with AsyncClient(app=app, base_url="http://0.0.0.0/") as ac:
         yield ac
