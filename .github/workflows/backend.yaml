@@ -8,8 +8,8 @@ env:
   ECR_REPOSITORY: "dns-backend"
   ECS_SERVICE: "dns-backend"
   ECS_CLUSTER: "dns"
-  ECS_TASK_DEFINITION: "dns-backend:latest"
-  CONTAINER_NAME: "dns-backend"   
+  ECS_TASK_DEFINITION: "dns-backend"
+  CONTAINER_NAME: "dns-backend"
 jobs:
   linters:
     runs-on: ubuntu-latest
@@ -62,7 +62,7 @@ jobs:
         run: |
           docker build -t $ECR_REGISTRY:$IMAGE_TAG ./backend/
           docker push $ECR_REGISTRY:$IMAGE_TAG 
-          echo "::set-output name=image::$ECR_REGISTRY:$IMAGE_TAG"
+          echo ::set-output name=image::$ECR_REGISTRY:$IMAGE_TAG
 
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
