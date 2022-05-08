@@ -30,4 +30,5 @@ jobs:
       - name: Run tests
         run: >-
           docker run dns-backend-container:latest poetry install;
-          docker run dns-backend-container:latest poetry run pytest -vv -s
+          docker run dns-backend-container:latest 
+            poetry run python3 -m pytest pytest -vv -s
