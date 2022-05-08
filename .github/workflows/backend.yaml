@@ -28,4 +28,6 @@ jobs:
       - name: Build docker
         run: docker build --tag=dns-backend-container:latest ./backend/
       - name: Run tests
-        run: docker run dns-backend-container:latest poetry run pytest -vv -s
+        run: >-
+          docker run dns-backend-container:latest poetry install;
+          docker run dns-backend-container:latest poetry run pytest -vv -s
