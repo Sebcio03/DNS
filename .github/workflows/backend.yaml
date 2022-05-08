@@ -28,6 +28,7 @@ jobs:
       - name: Check security issues with bandit
         run: bandit -r -x /backend/tests .
   tests:
+    needs: linters
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -35,10 +36,9 @@ jobs:
       - name: Build docker
         run: docker build --tag=dns-backend:latest ./backend/
       - name: Run tests
-        run: |
-          docker run dns-backend:latest 
-          bash -c "poetry install --no-root && poetry run pytest -vv -s" && exit
+        run: docker run dns-backend:latest bash -c "poetry install --no-root && poetry run pytest -vv -s" && exit
   deploy:
+    needs: tests
     name: Deploy
     runs-on: ubuntu-latest
     environment: production
