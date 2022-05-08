@@ -1,0 +1,17 @@
+{
+    "family": "dns-backend",
+    "containerDefinitions": [
+        {
+            "name": "dns-backend",
+            "image": "dns-backend",
+            "memory": "512",
+            "cpu": "256"
+        }
+    ],
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "networkMode": "awsvpc",
+    "memory": "512",
+    "cpu": "256"
+}
