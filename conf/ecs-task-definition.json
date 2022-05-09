@@ -10,7 +10,7 @@
           }
         ],
         "healthCheck": {
-          "Command" : [ "CMD-SHELL", "curl -f http://localhost:80/docs || exit 1" ]
+          "command" : [ "CMD-SHELL", "curl -f http://localhost:80/docs || exit 1" ]
         }
       }
     ],
