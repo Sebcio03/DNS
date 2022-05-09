@@ -1,8 +1,3 @@
-variable "backend_container_name" {
-  type        = string
-  description = "Backend Container Name for ECR"
-}
-
 resource "aws_ecs_cluster" "default" {
   name = "dns"
 }
@@ -18,7 +13,7 @@ resource "aws_ecs_task_definition" "backend" {
   container_definitions = jsonencode([
     {
       name      = "backend"
-      image     = var.backend_container_name
+      image     = format("%s%s",aws_ecr_repository.backend.repository_url,":latest")
       essential = true
       portMappings = [
         {
