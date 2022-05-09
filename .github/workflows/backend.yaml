@@ -5,7 +5,7 @@ on:
       - "**"
 env:
   AWS_REGION: "eu-central-1"
-  ECR_REPOSITORY: "dns-backend"
+  ECR_REPOSITORY: "backend"
   ECS_SERVICE: "backend"
   ECS_CLUSTER: "dns"
   ECS_TASK_DEFINITION: "conf/ecs-task-definition.json"
