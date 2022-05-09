@@ -7,7 +7,7 @@
     "compatibilities": ["FARGATE"],
     "family": "backend",
     "containerDefinitions": {
-      "name": 
+      "image": "backend"
     },
     "requiresAttributes": [
       {
