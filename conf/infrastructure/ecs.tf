@@ -37,10 +37,6 @@ resource "aws_ecs_service" "backend" {
   desired_count   = 1
   launch_type     = "FARGATE"
 
-  deployment_controller {
-    type = "CODE_DEPLOY"
-  }
-
   network_configuration {
     assign_public_ip = true
     security_groups = [aws_security_group.backend.id]
@@ -49,7 +45,7 @@ resource "aws_ecs_service" "backend" {
 
   load_balancer {
     target_group_arn = aws_lb_target_group.backend-green.id
-    container_name   = "dns-backend"
+    container_name   = "backend"
     container_port   = 80
   }
 }
