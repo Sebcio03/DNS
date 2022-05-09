@@ -38,7 +38,6 @@ jobs:
       - name: Run tests
         run: docker run dns-backend:latest bash -c "poetry install --no-root && poetry run pytest -vv -s" && exit
   deploy:
-    needs: tests
     name: Deploy
     runs-on: ubuntu-latest
     environment: production
