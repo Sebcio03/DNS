@@ -9,7 +9,7 @@ env:
   ECS_SERVICE: "backend"
   ECS_CLUSTER: "dns"
   ECS_TASK_DEFINITION: "conf/ecs-task-definition.json"
-  CONTAINER_NAME: "dns-backend"
+  CONTAINER_NAME: "backend"
 jobs:
   linters:
     runs-on: ubuntu-latest

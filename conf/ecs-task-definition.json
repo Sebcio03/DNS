@@ -6,6 +6,9 @@
     "taskRoleArn": "arn:aws:iam::060274181246:role/dns-ecs",
     "compatibilities": ["FARGATE"],
     "family": "backend",
+    "containerDefinitions": {
+      "name": 
+    },
     "requiresAttributes": [
       {
         "targetId": null,
