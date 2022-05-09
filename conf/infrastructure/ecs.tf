@@ -8,7 +8,7 @@ resource "aws_ecs_cluster" "default" {
 }
 
 resource "aws_ecs_task_definition" "backend" {
-  family = "dns-backend"
+  family = "backend"
   network_mode = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   cpu       = 256
@@ -31,7 +31,7 @@ resource "aws_ecs_task_definition" "backend" {
 }
 
 resource "aws_ecs_service" "backend" {
-  name            = "dns-backend"
+  name            = "backend"
   cluster         = aws_ecs_cluster.default.id
   task_definition = aws_ecs_task_definition.backend.arn
   desired_count   = 1
