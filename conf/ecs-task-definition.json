@@ -8,15 +8,15 @@
             "containerPort": 80,
             "hostPort"     : 80
           }
-        ]
+        ],
+        "healthCheck": {
+          "Command" : [ "CMD-SHELL", "curl -f http://localhost:80/docs || exit 1" ]
+        }
       }
     ],
     "placementConstraints": [],
     "memory": "512",
     "taskRoleArn": "arn:aws:iam::060274181246:role/dns-ecs",
-    "compatibilities": [
-      "FARGATE"
-    ],
     "family": "backend",
     "networkMode": "awsvpc",
     "cpu": "256"

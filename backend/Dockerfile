@@ -15,5 +15,4 @@ COPY ./app/pyproject.toml ./app/poetry.lock* /app/
 WORKDIR /app/
 RUN poetry install --no-root --no-dev
 
-EXPOSE 80
 COPY /app/ /app/

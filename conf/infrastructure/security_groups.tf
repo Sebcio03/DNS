@@ -22,7 +22,7 @@ resource "aws_security_group" "lb" {
 
 resource "aws_security_group" "backend" {
   name        = "dns-backend"
-  description = "Allow HTTP inbound traffic from lb"
+  description = "Allow HTTP/s inbound traffic from lb"
   vpc_id      = aws_vpc.default.id
 
   ingress {
@@ -32,6 +32,14 @@ resource "aws_security_group" "backend" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+  ingress {
+    description = "HTTPS"
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
 
   egress {
     description = "HTTP"
@@ -40,7 +48,7 @@ resource "aws_security_group" "backend" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
-    egress {
+  egress {
     description = "HTTP"
     from_port   = 443
     to_port     = 443
