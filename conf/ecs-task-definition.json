@@ -2,7 +2,7 @@
     "executionRoleArn": "arn:aws:iam::060274181246:role/dns-ecs",
     "containerDefinitions": [
       {
-        "name": "dns-backend"
+        "name": "backend"
       }
     ],
     "placementConstraints": [],
@@ -11,7 +11,7 @@
     "compatibilities": [
       "FARGATE"
     ],
-    "family": "dns-backend",
+    "family": "backend",
     "networkMode": "awsvpc",
     "cpu": "256"
   }

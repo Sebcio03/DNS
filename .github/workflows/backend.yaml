@@ -5,7 +5,7 @@ on:
       - "**"
 env:
   AWS_REGION: "eu-central-1"
-  ECR_REPOSITORY: "backend"
+  ECR_REPOSITORY: "dns-backend"
   ECS_SERVICE: "backend"
   ECS_CLUSTER: "dns"
   ECS_TASK_DEFINITION: "conf/ecs-task-definition.json"
@@ -40,7 +40,6 @@ jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
-    environment: production
     steps:
       - name: Checkout
         uses: actions/checkout@v3
