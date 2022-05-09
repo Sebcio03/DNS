@@ -1,11 +1,6 @@
 {
     "ipcMode": null,
     "executionRoleArn": "arn:aws:iam::060274181246:role/dns-ecs",
-    "containerDefinitions": [
-      {
-        "name": "backend"
-      }
-    ],
     "placementConstraints": [],
     "memory": "512",
     "taskRoleArn": "arn:aws:iam::060274181246:role/dns-ecs",
