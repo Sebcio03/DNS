@@ -1,9 +1,10 @@
 from typing import AsyncGenerator, Generator
 
 import pytest
-from app.main import app
 from fastapi.testclient import TestClient
 from httpx import AsyncClient
+
+from app.main import app
 
 
 @pytest.fixture()
