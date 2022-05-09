@@ -11,7 +11,7 @@ env:
   ECR_REPOSITORY: "backend"
   ECS_SERVICE: "backend"
   ECS_CLUSTER: "dns"
-  ECS_TASK_DEFINITION: "conf/ecs-task-definition.json"
+  ECS_TASK_DEFINITION: "ecs-task-definition.json"
   CONTAINER_NAME: "backend"
 jobs:
   deploy:
@@ -30,6 +30,8 @@ jobs:
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@aaf69d68aa3fb14c1d5a6be9ac61fe15b48453a2
+      - name: Get ecs-task-definition.json
+        run: aws ecs describe-task-definition --task-definition=backend > ecs-task-definition.json
       - name: Build, tag, and push image to Amazon ECR
         id: build-image
         env:
@@ -43,7 +45,7 @@ jobs:
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
-          task-definition: ${{ env.ECS_TASK_DEFINITION}}
+          task-definition: "ecs-task-definition.json"
           container-name: ${{ env.CONTAINER_NAME }}
           image: ${{ steps.build-image.outputs.image }}
       - name: Deploy Amazon ECS task definition
