@@ -16,21 +16,6 @@ resource "aws_lb_listener" "backend" {
   }
 }
 
-resource "aws_lb_target_group" "backend-blue" {
-  name     = "dns-backend-blue"
-  port     = 80
-  protocol = "HTTP"
-  target_type = "ip"
-  vpc_id   = aws_vpc.default.id
-  
-
-  health_check {
-    port     = 80
-    path     = "/"
-    protocol = "HTTP"
-  }
-}
-
 resource "aws_lb_target_group" "backend-green" {
   name     = "dns-backend-green"
   port     = 80
@@ -41,7 +26,7 @@ resource "aws_lb_target_group" "backend-green" {
 
   health_check {
     port     = 80
-    path     = "/"
+    path     = "/docs"
     protocol = "HTTP"
   }
 }
