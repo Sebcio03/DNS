@@ -6,9 +6,6 @@ on:
 jobs:
   linters:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: /dns/
     steps:
       - uses: actions/setup-go@v3
         with:
@@ -16,7 +13,8 @@ jobs:
       - uses: actions/checkout@v3
       - name: Run golangci-lint
         uses: golangci/golangci-lint-action@v3
-        run: golangci-lint run .
+        with:
+          version: v1.29
   tests:
     runs-on: ubuntu-latest
     defaults:

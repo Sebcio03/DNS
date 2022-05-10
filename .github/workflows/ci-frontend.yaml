@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - "**"
-
 jobs:
   lintersAndTests:
     name: Linters and tests
