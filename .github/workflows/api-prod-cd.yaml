@@ -3,7 +3,7 @@ on:
   workflow_run:
     workflows: ["API CI"]
     branches: [main]
-    types: 
+    types:
       - completed
 
 env:

@@ -25,6 +25,7 @@ services:
   dns:
     build: dns
     restart: always
+    command: ./dns
     ports:
       - 153:153
     environment:
@@ -45,6 +46,7 @@ services:
   frontend:
     build: frontend
     restart: always
+    command: ng serve --port 80
     ports:
       - 80:80
     depends_on:

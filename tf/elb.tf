@@ -22,7 +22,7 @@ resource "aws_lb_target_group" "api" {
   protocol = "HTTP"
   target_type = "ip"
   vpc_id   = aws_vpc.default.id
-  
+
 
   health_check {
     port     = 80

@@ -19,7 +19,7 @@ jobs:
           isort;
           flake8 api/*.py
       - name: Check security issues with bandit
-        run: bandit -r -x /api/app/tests .
+        run: bandit -r -x /api/app/tests /api/app
   tests:
     needs: linters
     runs-on: ubuntu-latest
