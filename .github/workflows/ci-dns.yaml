@@ -15,7 +15,7 @@ jobs:
           go-version: 1.18
       - uses: actions/checkout@v3
       - name: Install packages
-        run: go install; ls
+        run: go install
       - name: Run golangci-lint
         uses: golangci/golangci-lint-action@v3
         with:
