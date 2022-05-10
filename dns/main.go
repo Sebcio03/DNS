@@ -12,10 +12,16 @@ func handleRequest(w dns.ResponseWriter, r *dns.Msg) {
 
 	in, _, err := client.Exchange(r, "8.8.8.8:53")
 	if err != nil {
-		w.WriteMsg(message)
-		return
+		fmt.Println(err)
+		err = w.WriteMsg(message)
+		if err != nil {
+			fmt.Println(err)
+		}
 	}
-	w.WriteMsg(in)
+	err = w.WriteMsg(in)
+	if err != nil {
+		fmt.Println(err)
+	}
 }
 
 func main() {
@@ -23,6 +29,6 @@ func main() {
 	server := &dns.Server{Addr: ":153", Net: "udp"}
 	err := server.ListenAndServe()
 	if err != nil {
-		fmt.Printf(err.Error())
+		fmt.Println(err)
 	}
 }
