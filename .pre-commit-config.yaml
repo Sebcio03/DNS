@@ -26,3 +26,8 @@ repos:
     rev: v2.6.2
     hooks:
       - id: prettier
+  - repo: https://github.com/golangci/golangci-lint
+    rev: v1.46.0
+    hooks:
+      - id: golangci-lint
+        files: "dns/"
