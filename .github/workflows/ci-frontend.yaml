@@ -24,6 +24,4 @@ jobs:
       - name: Run Angular linter
         run: ng lint
       - name: Run unit tests
-        run: ng test --no-watch --no-progress --browsers=ChromeHeadlessCI
-      - name: Run E2E tests
-        run: ng e2e
+        run: npm test --no-watch --no-progress --browsers=ChromeHeadlessCI
