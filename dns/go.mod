@@ -1,4 +1,4 @@
-module dns
+module dns.com
 
 go 1.18
 
