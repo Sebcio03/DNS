@@ -21,6 +21,7 @@ jobs:
         with:
           version: v1.29
           args: "-v; ls"
+          working-directory: ./dns/
   tests:
     runs-on: ubuntu-latest
     steps:
