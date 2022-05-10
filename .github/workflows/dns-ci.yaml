@@ -13,6 +13,7 @@ jobs:
       - name: Build docker
         run: docker build --tag=dns-dns:latest ./dns/
   linters:
+    needs: docker-build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -31,7 +32,7 @@ jobs:
       - name: Run golint
         run: docker run dns-dns bash -c "golint ./..."
   tests:
-    needs: linters
+    needs: docker-build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
