@@ -5,11 +5,10 @@ on:
     branches: [develop]
     types:
       - completed
-
 env:
   AWS_REGION: "eu-central-1"
   ECR_REPOSITORY: "api"
-  ECS_SERVICE: GIT"api"
+  ECS_SERVICE: "api"
   ECS_CLUSTER: "dns"
   ECS_TASK_DEFINITION: "ecs-task-definition.json"
   CONTAINER_NAME: "api"
