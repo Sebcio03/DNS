@@ -9,13 +9,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      - name: Build docker
-        run: docker build --tag=dns-dns:latest ./dns/
   linters:
     needs: docker-build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Build docker
+        run: docker build --tag=dns-dns:latest ./dns/
       - name: Verify dependencies
         run: docker run dns-dns bash -c "go mod verify"
       - name: Build
@@ -30,11 +30,11 @@ jobs:
         run: docker run dns-dns bash -c "go install golang.org/x/lint/golint@latest"
       - name: Run golint
         run: docker run dns-dns bash -c "golint ./..."
+      - name: Run tests
+        run: docker run dns-dns:latest bash -c "go test ."
   tests:
     needs: docker-build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      - name: Run tests
-        run: docker run dns-dns:latest bash -c "go test ."
