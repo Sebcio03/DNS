@@ -3,17 +3,27 @@ on:
   push:
     branches:
       - "**"
+
 jobs:
-  docker-build:
+  lintersAndTests:
+    name: Linters and tests
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./frontend
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Build docker
-        run: docker build --tag=dns-frontend:latest ./dns/
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "16.15"
+      - name: Install dependencies
+        run: >-
+          npm install;
+          npm install -g @angular/cli;
+          npm ci
       - name: Run Angular linter
-        run: docker run dns-frontend bash -c "ng lint"
+        run: ng lint
       - name: Run unit tests
-        run: docker run dns-frontend bash -c "npm ci; ng test --no-watch --no-progress --browsers=ChromeHeadlessCI"
+        run: ng test --no-watch --no-progress --browsers=ChromeHeadlessCI
       - name: Run E2E tests
-        run: docker run dns-frontend bash -c "ng e2e"
+        run: ng e2e
