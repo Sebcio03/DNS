@@ -20,7 +20,7 @@ resource "aws_security_group" "lb" {
   }
 }
 
-resource "aws_security_group" "backend" {
+resource "aws_security_group" "api" {
   name        = "dns-backend"
   description = "Allow HTTP/s inbound traffic from lb"
   vpc_id      = aws_vpc.default.id

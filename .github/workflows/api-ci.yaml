@@ -1,0 +1,34 @@
+name: API CI
+on:
+  push:
+    branches:
+      - "**"
+jobs:
+  linters:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v3
+        with:
+          python-version: "3.10.4"
+      - name: Install Black, Isort, Flake8, Bandit
+        run: pip install black isort flake8 bandit
+      - name: Check formating with Black, Isort, Flake8
+        run: >-
+          black .;
+          isort;
+          flake8 api/*.py
+      - name: Check security issues with bandit
+        run: bandit -r -x /api/app/tests .
+  tests:
+    needs: linters
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Build docker
+        run: docker build --tag=dns-api:latest ./api/
+      - name: Run docker
+        run: docker run --name=dns-api -d dns-api:latest
+      - name: Run tests
+        run: docker exec dns-api bash -c "poetry install --no-root && poetry run pytest -vv -s"

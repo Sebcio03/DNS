@@ -2,8 +2,8 @@ resource "aws_ecs_cluster" "default" {
   name = "dns"
 }
 
-resource "aws_ecs_task_definition" "backend" {
-  family = "backend"
+resource "aws_ecs_task_definition" "api" {
+  family = "api"
   network_mode = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   cpu       = 256
@@ -12,8 +12,8 @@ resource "aws_ecs_task_definition" "backend" {
 
   container_definitions = jsonencode([
     {
-      name      = "backend"
-      image     = format("%s%s",aws_ecr_repository.backend.repository_url,":latest")
+      name      = "api"
+      image     = format("%s%s",aws_ecr_repository.api.repository_url,":latest")
       essential = true
       portMappings = [
         {
@@ -25,22 +25,22 @@ resource "aws_ecs_task_definition" "backend" {
   ])
 }
 
-resource "aws_ecs_service" "backend" {
-  name            = "backend"
+resource "aws_ecs_service" "api" {
+  name            = "api"
   cluster         = aws_ecs_cluster.default.id
-  task_definition = aws_ecs_task_definition.backend.arn
+  task_definition = aws_ecs_task_definition.api.arn
   desired_count   = 1
   launch_type     = "FARGATE"
 
   network_configuration {
     assign_public_ip = true
-    security_groups = [aws_security_group.backend.id]
+    security_groups = [aws_security_group.api.id]
     subnets = [aws_subnet.public.id, aws_subnet.public2.id]
   }
 
   load_balancer {
-    target_group_arn = aws_lb_target_group.backend-green.id
-    container_name   = "backend"
+    target_group_arn = aws_lb_target_group.api.id
+    container_name   = "api"
     container_port   = 80
   }
 }

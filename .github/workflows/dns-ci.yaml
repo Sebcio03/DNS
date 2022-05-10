@@ -1,0 +1,40 @@
+name: DNS CI
+on:
+  push:
+    branches:
+      - "**"
+jobs:
+  docker-build:
+    needs: linters
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Build docker
+        run: docker build --tag=dns-dns:latest ./dns/
+  linters:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Verify dependencies
+        run: docker run dns-dns bash -c "go mod verify"
+      - name: Build
+        run: docker run dns-dns bash -c "go build -v ./..."
+      - name: Run go vet
+        run: docker run dns-dns bash -c "go vet ./..."
+      - name: Install staticcheck
+        run: docker run dns-dns bash -c "go install honnef.co/go/tools/cmd/staticcheck@latest"
+      - name: Run staticcheck
+        run: docker run dns-dns bash -c "staticcheck ./..."
+      - name: Install golint
+        run: docker run dns-dns bash -c "go install golang.org/x/lint/golint@latest"
+      - name: Run golint
+        run: docker run dns-dns bash -c "golint ./..."
+  tests:
+    needs: linters
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Run tests
+        run: docker run dns-dns:latest bash -c "go test ."
