@@ -6,6 +6,9 @@ on:
 jobs:
   linters:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: dns
     steps:
       - uses: actions/setup-go@v3
         with:
