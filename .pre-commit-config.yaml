@@ -30,4 +30,4 @@ repos:
     rev: v1.46.0
     hooks:
       - id: golangci-lint
-        files: "dns/"
+        files: "dns/*.go"
