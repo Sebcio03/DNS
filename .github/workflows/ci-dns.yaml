@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./dns
+        working-directory: ./dns/
     steps:
       - uses: actions/setup-go@v3
         with:
@@ -17,11 +17,10 @@ jobs:
       - name: Install packages
         run: go install
       - name: Run golangci-lint
-        uses: golangci/golangci-lint-action@v3
+        uses: golangci/golangci-lint-action@v3<
         with:
           version: v1.29
           args: "-v"
-
   tests:
     runs-on: ubuntu-latest
     steps:
