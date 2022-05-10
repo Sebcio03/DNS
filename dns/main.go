@@ -9,6 +9,7 @@ import (
 func handleRequest(w dns.ResponseWriter, r *dns.Msg) {
 	client := new(dns.Client)
 	message := new(dns.Msg)
+
 	in, _, err := client.Exchange(r, "8.8.8.8:53")
 	if err != nil {
 		w.WriteMsg(message)
